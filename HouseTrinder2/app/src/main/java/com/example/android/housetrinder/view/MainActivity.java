@@ -1,12 +1,17 @@
 package com.example.android.housetrinder.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.example.android.housetrinder.Control.FragmentAdapter;
 import com.example.android.housetrinder.R;
@@ -14,7 +19,10 @@ import com.facebook.AccessToken;
 
 public class MainActivity extends AppCompatActivity {
 
+    String data = "USER_INFO";
 
+    private boolean DEBBUG = true;
+    SharedPreferences user_account ;
 
 
     @Override
@@ -22,7 +30,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(AccessToken.getCurrentAccessToken() == null){
+        user_account = getApplicationContext().getSharedPreferences(data, Context.MODE_PRIVATE);
+
+
+
+        if(!user_account.getBoolean("login",false)){
+
+            if(DEBBUG)
+                Log.e("onCreate","no AccestToken");
+
             goToLoginScreen();
         }
 

@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity  {
         // Callback registration
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
+            public void onSuccess(final LoginResult loginResult) {
                 // App code
                 Log.e("onSucessLogin",""+loginResult.getAccessToken().getUserId());
 
@@ -123,6 +123,8 @@ public class LoginActivity extends AppCompatActivity  {
                                 Log.e("json",object.toString());
                                 // Application code
 
+                                user_account.putString("facebookID",loginResult.getAccessToken().getUserId());
+                                user_account.putBoolean("login",true);
 
                                 try {
 
@@ -163,7 +165,9 @@ public class LoginActivity extends AppCompatActivity  {
                                 }
 
 
-                                user_account.commit();
+
+
+                                user_account.apply();
 
                                 goToMainActivity();
 

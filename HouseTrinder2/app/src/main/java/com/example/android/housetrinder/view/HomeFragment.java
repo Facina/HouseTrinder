@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                user_account.edit().putBoolean("login",false).apply();
                 LoginManager.getInstance().logOut();
                 Intent intent = new Intent(getContext(),LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -63,6 +64,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        Button preferences = (Button) rootView.findViewById(R.id.preferences_button);
+        preferences.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginManager.getInstance().logOut();
+                Intent intent = new Intent(getContext(),PersonalityActivity.class);
+                startActivity(intent);
+            }
+        });
 
         try {
             welcomeTV.setText(getString(R.string.welcome)+" "+user_account.getString("name",null));

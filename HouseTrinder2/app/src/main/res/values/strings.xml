@@ -7,6 +7,9 @@
     <string name="welcome">Benvindo ao House Trinder </string>
     <string name="facebook_app_id">427148987754367</string>
     <string name="fb_login_protocol_scheme">fb427148987754367</string>
+    <string name="preferences">Preferencias</string>
+    <string name="Ajuste">Ajuste suas preferencias para encontrar seu colega de quarto ideal</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -26,4 +29,24 @@
         completions."
     </string>
     <string name="register">Register</string>
+    <string name="question1">Quão organizado gostaria que seu colega fosse?</string>
+    <string name="extremosOrganizado">(0-Desorganizado até 5-Organizado)</string>
+    <string name="muito_desorganizado">Muito desorganizado</string>
+    <string name="desorganizado">Desorganizado</string>
+    <string name="normal">Normal</string>
+    <string name="organizado">Organizado</string>
+    <string name="muito_organizado">Muito Organizado</string>
+    <string name="question2">Qual frequência seu colega pode trazer visitas?</string>
+    <string name="nunca">Nunca</string>
+    <string name="raramente">Raramente</string>
+    <string name="as_vezes">De vez em quando</string>
+    <string name="sempre">Sempre</string>
+    <string name="frequentemente">Frequentemente</string>
+    <string name="question3">Qual nível sonoro de seu colega é aceitável?</string>
+    <string name="silencioso">Silencioso</string>
+    <string name="discreto">Discreto</string>
+    <string name="notavel">Notável</string>
+    <string name="barulhento">Barulhento</string>
+    <string name="question4">Qual frequência você gosta de sair?</string>
+    <string name="proximo">proximo</string>
 </resources>

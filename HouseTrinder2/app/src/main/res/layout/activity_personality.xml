@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.PersonalityActivity">
+
+
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/root_linear_preferences"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <!-- QUESTION 1-->
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/question1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <SeekBar
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/seekbar_Q1"
+            android:max="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:id="@+id/answer1"
+            android:layout_margin="20dp"
+            tools:text="Desorganizado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <!-- QUESTION2 -->
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/question2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <SeekBar
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/seekbar_Q2"
+            android:max="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:id="@+id/answer2"
+            android:layout_margin="20dp"
+            tools:text="Desorganizado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- QUESTION3 -->
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/question3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <SeekBar
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/seekbar_Q3"
+            android:max="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:id="@+id/answer3"
+            android:layout_margin="20dp"
+            tools:text="Desorganizado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <!-- QUESTION4 -->
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/question4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <SeekBar
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/seekbar_Q4"
+            android:max="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:id="@+id/answer4"
+            android:layout_margin="20dp"
+            tools:text="Desorganizado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"
+            android:background="@drawable/green_button"
+            android:text="@string/proximo"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+
+
+</ScrollView>
+
+
+
+
+</android.support.constraint.ConstraintLayout>
