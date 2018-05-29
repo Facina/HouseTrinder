@@ -11,7 +11,6 @@
     <string name="Ajuste">Ajuste suas preferencias para encontrar seu colega de quarto ideal</string>
 
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_login">Sign in</string>
@@ -49,4 +48,14 @@
     <string name="barulhento">Barulhento</string>
     <string name="question4">Qual frequência você gosta de sair?</string>
     <string name="proximo">proximo</string>
+    <string name="interesses">Interesses</string>
+    <string name="interesses_titulo">Quais são seus interesses?</string>
+    <string name="esporte">Esporte</string>
+    <string name="video_game">VideoGame</string>
+    <string name="arte">Arte</string>
+    <string name="musica">Musica</string>
+    <string name="netflix">Netflix</string>
+    <string name="teatro">Teatro</string>
+    <string name="televisao">Televisão</string>
+    <string name="leitura">Leitura</string>
 </resources>

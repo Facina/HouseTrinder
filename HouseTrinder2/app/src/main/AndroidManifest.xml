@@ -16,7 +16,6 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/AppTheme2">
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -48,12 +47,15 @@
         <activity
             android:name=".view.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".view.PersonalityActivity"
+        <activity
+            android:name=".view.PreferencesActivity"
             android:label="@string/preferences"
             android:parentActivityName=".view.MainActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".view.InterestActivity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".view.PreferencesActivity"
+            android:label="@string/interesses"></activity>
     </application>
 
 </manifest>

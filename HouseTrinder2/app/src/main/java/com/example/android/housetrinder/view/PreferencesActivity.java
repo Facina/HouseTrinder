@@ -1,15 +1,19 @@
 package com.example.android.housetrinder.view;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.webkit.WebView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.android.housetrinder.R;
 
-public class PersonalityActivity extends AppCompatActivity {
+public class PreferencesActivity extends AppCompatActivity {
 
     SeekBar seekBarQ1;
     TextView answer1TV;
@@ -19,14 +23,16 @@ public class PersonalityActivity extends AppCompatActivity {
     TextView answer3TV;
     SeekBar seekBarQ4;
     TextView answer4TV;
-
+    String preferences = "USER_PREFERENCES";
+    SharedPreferences user_account ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personality);
+        setContentView(R.layout.activity_preferences);
+        user_account = getSharedPreferences(preferences, Context.MODE_PRIVATE);
 
-               seekBarQ1 = (SeekBar) findViewById(R.id.seekbar_Q1);
+        seekBarQ1 = (SeekBar) findViewById(R.id.seekbar_Q1);
 
 
         seekBarQ1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -45,6 +51,7 @@ public class PersonalityActivity extends AppCompatActivity {
 
             }
         });
+
 
         seekBarQ1.setProgress(0);
         Question1(seekBarQ1.getProgress());
@@ -114,8 +121,32 @@ public class PersonalityActivity extends AppCompatActivity {
         });
 
         Question4(seekBarQ4.getProgress());
+
+
+        Button next = (Button) findViewById(R.id.preferences_next);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveAnswer();
+                Intent interest = new Intent(getApplicationContext(),InterestActivity.class);
+                startActivity(interest);
+            }
+        });
+
+
     }
 
+    void saveAnswer(){
+
+        user_account.edit()
+                .putInt("answer1",seekBarQ1.getProgress())
+                .putInt("answer2",seekBarQ2.getProgress())
+                .putInt("answer3",seekBarQ3.getProgress())
+                .putInt("answer4",seekBarQ4.getProgress())
+                .apply();
+
+
+    }
 
     void Question4(int i){
         answer4TV = (TextView) findViewById(R.id.answer4);

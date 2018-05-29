@@ -4,11 +4,8 @@ package com.example.android.housetrinder.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,12 +21,13 @@ import com.squareup.picasso.Picasso;
 
 public class HomeFragment extends Fragment {
 
-    String data = "USER_INFO";
+
 
 
     public HomeFragment() {
     }
 
+    String data = "USER_INFO";
     SharedPreferences user_account ;
     ImageView imageViewPicture;
     TextView welcomeTV;
@@ -69,7 +67,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 LoginManager.getInstance().logOut();
-                Intent intent = new Intent(getContext(),PersonalityActivity.class);
+                Intent intent = new Intent(getContext(),PreferencesActivity.class);
                 startActivity(intent);
             }
         });
