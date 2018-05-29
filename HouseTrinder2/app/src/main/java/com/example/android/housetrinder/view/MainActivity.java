@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                int color = ContextCompat.getColor(getApplicationContext(),R.color.colorPrimary);
+                int color = ContextCompat.getColor(getApplicationContext(),R.color.white);
                 tab.getIcon().setColorFilter(color, PorterDuff.Mode.SRC_IN);
             }
 
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         tabLayout.getTabAt(0).select();
+        tabLayout.getTabAt(0).getIcon().setColorFilter(ContextCompat.getColor(getApplicationContext(),R.color.white),PorterDuff.Mode.SRC_IN);
 
     }
 

@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -60,6 +61,7 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity  {
 
+    private boolean DEBBUG = true;
     LoginButton loginButton;
     CallbackManager callbackManager;
     SharedPreferences.Editor user_account;
@@ -71,16 +73,36 @@ public class LoginActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_login);
 
 
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginFacebook();
+            }
+        });
 
+        if(DEBBUG) {
+            try {
+                ActivityInfo[] list = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_ACTIVITIES).activities;
+
+                Log.e("list", " " + list.length);
+                for (int i = 0; i < list.length; i++) {
+                    Log.e("List of activities", " " + list[i].name);
+
+                }
+            } catch (Exception e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
     }
 
 
 
-    void loginFacebook(View v){
+    void loginFacebook(){
         callbackManager = CallbackManager.Factory.create();
         user_account = getSharedPreferences(data,Context.MODE_PRIVATE).edit();
 
-        loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("public_profile", "email", "user_birthday", "user_gender");
         // If using in a fragment
 
