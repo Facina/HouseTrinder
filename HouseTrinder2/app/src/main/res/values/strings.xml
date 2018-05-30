@@ -20,7 +20,7 @@
     </string-array>
 
 
-
+<!--
     <array name="leitura_drawable">
         <item>@drawable/comics</item>
         <item>@drawable/anime</item>
@@ -30,6 +30,7 @@
         <item>@drawable/teatro</item>
 
     </array>
+    -->
 
     <string-array name="esporte">
         <item>@string/futebol</item>
@@ -43,17 +44,19 @@
         <item>@string/handball</item>
     </string-array>
 
-    <array name="esporte_drawable">
-        <item>@drawable/futebol</item>
-        <item>@drawable/natacao</item>
-        <item>@drawable/volleyball</item>
-        <item>@drawable/basquete</item>
-        <item>@drawable/tennis</item>
-        <item>@drawable/luta</item>
-        <item>@drawable/skate</item>
-        <item>@drawable/corrida</item>
-        <item>@drawable/handball</item>
-    </array>
+
+
+    <string-array name="esporte_URL">
+        <item>https://cdn.icon-icons.com/icons2/553/PNG/512/footbal_icon-icons.com_53569.png</item>
+        <item>https://cdn.icon-icons.com/icons2/37/PNG/512/swimming_sport_3640.png</item>
+        <item>https://images.vexels.com/media/users/3/130632/isolated/preview/e29d144e39e8179ad0cb0c4b58ccc173-voleibol-brilhante-by-vexels.png</item>
+        <item>https://cdn.icon-icons.com/icons2/1194/PNG/512/1490886333-37-basketball_82467.png</item>
+        <item>https://cdn2.iconfinder.com/data/icons/summer-olympic-sport/256/tennis-512.png</item>
+        <item>https://cdn.icon-icons.com/icons2/851/PNG/512/fight_icon-icons.com_67557.png</item>
+        <item>https://cdn4.iconfinder.com/data/icons/sport-17/64/skateboarding-512.png</item>
+        <item>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj0PwHyqknx75gJWOnT8vOifmaIv3w6wyLu-OeMrduz4mCfx7XtQ</item>
+        <item>https://cdn3.iconfinder.com/data/icons/common-sports/4096/handball-512.png</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -142,15 +145,15 @@
         <item>@array/esporte</item>
         <item>@array/esporte</item>
     </integer-array>
+
     <integer-array name="theme_resource_drawable">
-        <item>@array/esporte_drawable</item>
-        <item>@array/leitura_drawable</item>
-        <item>@array/esporte_drawable</item>
-        <item>@array/esporte_drawable</item>
-        <item>@array/esporte_drawable</item>
-        <item>@array/esporte_drawable</item>
-        <item>@array/esporte_drawable</item>
-        <item>@array/esporte_drawable</item>
+        <item>@array/esporte_URL</item>
+        <item>@array/esporte_URL</item>
+        <item>@array/esporte_URL</item>
+        <item>@array/esporte_URL</item>
+        <item>@array/esporte_URL</item>
+        <item>@array/esporte_URL</item>
+        <item>@array/esporte_URL</item>
 
     </integer-array>
 

@@ -51,17 +51,18 @@ public class InterestActivity extends AppCompatActivity {
         String[] theme = getResources().getStringArray(R.array.theme);
         TypedArray namesTag = getResources().obtainTypedArray(R.array.theme_resource);
         TypedArray drawablesTag = getResources().obtainTypedArray(R.array.theme_resource_drawable);
-
-        ArrayList<String> names = new ArrayList<>();
-        ArrayList<Integer> images = new ArrayList<>();
+        String[] urls = getResources().getStringArray(R.array.esporte_URL);
+        String[] names = getResources().getStringArray(R.array.esporte);
+        //ArrayList<String> names = new ArrayList<>();
+       // ArrayList<String> images = new ArrayList<>();
        //Log.e("drawable"," "+drawablesTag.getResourceId(0,-1));
         for (int i = 0; i < namesTag.length(); i++) {
 
-            names.clear();
-            images.clear();
-            TypedArray image = getResources().obtainTypedArray(drawablesTag.getResourceId(i,-1));
+           // names.clear();
+           // images.clear();
+            //String[] image = getResources().getStringArray(drawablesTag.getResourceId(i,-1));
 
-            TypedArray name =  getResources().obtainTypedArray(namesTag.getResourceId(i,-1));
+            //TypedArray name =  getResources().obtainTypedArray(namesTag.getResourceId(i,-1));
             SectionDataModel dataModel = new SectionDataModel();
 
             dataModel.setHeaderTitle(theme[i]);
@@ -71,11 +72,11 @@ public class InterestActivity extends AppCompatActivity {
 
 
 
-            for (int j = 0; j <name.length(); j++) {
-                names.add(name.getString(j));
+            for (int j = 0; j <9; j++) {
 
-                images.add(image.getResourceId(j,-1));
-                singleItem.add(new SingleItemModel(names.get(j),images.get(j)));
+
+               // images.add(image[j]);
+                singleItem.add(new SingleItemModel(names[j],urls[j]));
             }
 
             dataModel.setAllItemsInSection(singleItem);

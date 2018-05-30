@@ -5,21 +5,21 @@ public class SingleItemModel {
 
     private String name;
 
-    public int getResourceDrawable() {
+    public String getResourceDrawable() {
         return resourceDrawable;
     }
 
-    public void setResourceDrawable(int resourceDrawable) {
+    public void setResourceDrawable(String resourceDrawable) {
         this.resourceDrawable = resourceDrawable;
     }
 
-    private int resourceDrawable;
+    private String resourceDrawable;
 
 
     public SingleItemModel() {
     }
 
-    public SingleItemModel(String name, int resourceDrawable) {
+    public SingleItemModel(String name, String resourceDrawable) {
         this.name = name;
         this.resourceDrawable = resourceDrawable;
     }

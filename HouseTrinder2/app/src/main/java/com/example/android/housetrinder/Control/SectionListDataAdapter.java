@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.android.housetrinder.Model.SingleItemModel;
 import com.example.android.housetrinder.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -38,8 +39,8 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
         holder.tvTitle.setText(singleItem.getName());
 
-
-        holder.itemImage.setImageResource(singleItem.getResourceDrawable());
+        Picasso.get().load(singleItem.getResourceDrawable()).fit().into(holder.itemImage);
+       // holder.itemImage.setImageResource(singleItem.getResourceDrawable());
     }
 
     @Override
