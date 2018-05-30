@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity  {
     CallbackManager callbackManager;
     SharedPreferences.Editor user_account;
     String data = "USER_INFO";
-
+    Button regularLogin;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +80,14 @@ public class LoginActivity extends AppCompatActivity  {
                 loginFacebook();
             }
         });
+        regularLogin = (Button) findViewById(R.id.email_sign_in_button);
+        regularLogin.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginRegular();
+            }
+        });
+
 
         if(DEBBUG) {
             try {
@@ -209,6 +217,12 @@ public class LoginActivity extends AppCompatActivity  {
         startActivity(intent);
     }
 
+    void loginRegular(){
+        user_account = getSharedPreferences(data,Context.MODE_PRIVATE).edit();
+        user_account.putBoolean("login",true);
+        user_account.apply();
+        goToMainActivity();
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

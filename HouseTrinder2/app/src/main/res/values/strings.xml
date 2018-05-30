@@ -37,6 +37,10 @@
         <item>@string/voleibol</item>
         <item>@string/basquete</item>
         <item>@string/tennis</item>
+        <item>@string/luta</item>
+        <item>@string/skate</item>
+        <item>@string/corrida</item>
+        <item>@string/handball</item>
     </string-array>
 
     <array name="esporte_drawable">
@@ -45,6 +49,10 @@
         <item>@drawable/volleyball</item>
         <item>@drawable/basquete</item>
         <item>@drawable/tennis</item>
+        <item>@drawable/luta</item>
+        <item>@drawable/skate</item>
+        <item>@drawable/corrida</item>
+        <item>@drawable/handball</item>
     </array>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -105,6 +113,10 @@
     <string name="romances">Romantico</string>
     <string name="aventura">Aventura</string>
     <string name="poesia">Poesia</string>
+    <string name="luta">Luta</string>
+    <string name="skate">Skate</string>
+    <string name="corrida">Corrida</string>
+    <string name="handball">Handball</string>
 
     <string-array name="theme">
 
