@@ -1,9 +1,11 @@
 package com.example.android.housetrinder.view;
 
+import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 
@@ -47,16 +49,33 @@ public class InterestActivity extends AppCompatActivity {
     public void createData() {
 
         String[] theme = getResources().getStringArray(R.array.theme);
+        TypedArray namesTag = getResources().obtainTypedArray(R.array.theme_resource);
+        TypedArray drawablesTag = getResources().obtainTypedArray(R.array.theme_resource_drawable);
 
-        for (int i = 0; i < theme.length; i++) {
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<Integer> images = new ArrayList<>();
+       //Log.e("drawable"," "+drawablesTag.getResourceId(0,-1));
+        for (int i = 0; i < namesTag.length(); i++) {
 
+            names.clear();
+            images.clear();
+            TypedArray image = getResources().obtainTypedArray(drawablesTag.getResourceId(i,-1));
+
+            TypedArray name =  getResources().obtainTypedArray(namesTag.getResourceId(i,-1));
             SectionDataModel dataModel = new SectionDataModel();
 
             dataModel.setHeaderTitle(theme[i]);
 
             ArrayList<SingleItemModel> singleItem = new ArrayList<SingleItemModel>();
-            for (int j = 0; j <= 5; j++) {
-                singleItem.add(new SingleItemModel("Item " + j, "URL " + j));
+
+
+
+
+            for (int j = 0; j <name.length(); j++) {
+                names.add(name.getString(j));
+
+                images.add(image.getResourceId(j,-1));
+                singleItem.add(new SingleItemModel(names.get(j),images.get(j)));
             }
 
             dataModel.setAllItemsInSection(singleItem);

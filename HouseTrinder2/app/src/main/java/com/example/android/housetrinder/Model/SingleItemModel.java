@@ -4,26 +4,27 @@ public class SingleItemModel {
 
 
     private String name;
-    private String url;
-    private String description;
+
+    public int getResourceDrawable() {
+        return resourceDrawable;
+    }
+
+    public void setResourceDrawable(int resourceDrawable) {
+        this.resourceDrawable = resourceDrawable;
+    }
+
+    private int resourceDrawable;
 
 
     public SingleItemModel() {
     }
 
-    public SingleItemModel(String name, String url) {
+    public SingleItemModel(String name, int resourceDrawable) {
         this.name = name;
-        this.url = url;
+        this.resourceDrawable = resourceDrawable;
     }
 
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public String getName() {
         return name;
@@ -33,13 +34,6 @@ public class SingleItemModel {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
 
 }

@@ -10,6 +10,42 @@
     <string name="preferences">Preferencias</string>
     <string name="Ajuste">Ajuste suas preferencias para encontrar seu colega de quarto ideal</string>
 
+    <string-array name="leitura">
+        <item>@string/gibi</item>
+        <item>@string/anime</item>
+        <item>@string/romances</item>
+        <item>@string/aventura</item>
+        <item>@string/poesia</item>
+        <item>@string/teatro</item>
+    </string-array>
+
+
+
+    <array name="leitura_drawable">
+        <item>@drawable/comics</item>
+        <item>@drawable/anime</item>
+        <item>@drawable/romance</item>
+        <item>@drawable/aventura</item>
+        <item>@drawable/poesia</item>
+        <item>@drawable/teatro</item>
+
+    </array>
+
+    <string-array name="esporte">
+        <item>@string/futebol</item>
+        <item>@string/natacao</item>
+        <item>@string/voleibol</item>
+        <item>@string/basquete</item>
+        <item>@string/tennis</item>
+    </string-array>
+
+    <array name="esporte_drawable">
+        <item>@drawable/futebol</item>
+        <item>@drawable/natacao</item>
+        <item>@drawable/volleyball</item>
+        <item>@drawable/basquete</item>
+        <item>@drawable/tennis</item>
+    </array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -59,15 +95,54 @@
     <string name="televisao">Televisão</string>
     <string name="leitura">Leitura</string>
     <string name="save">Salvar</string>
+    <string name="futebol">Futebol</string>
+    <string name="natacao">Natação</string>
+    <string name="voleibol">Voleibol</string>
+    <string name="basquete">Basquete</string>
+    <string name="tennis">Tennis</string>
+    <string name="gibi">Gibi</string>
+    <string name="anime">Animê</string>
+    <string name="romances">Romantico</string>
+    <string name="aventura">Aventura</string>
+    <string name="poesia">Poesia</string>
 
     <string-array name="theme">
-        <item>@string/leitura</item>
+
         <item>@string/esporte</item>
+        <item>@string/leitura</item>
         <item>@string/arte</item>
         <item>@string/video_game</item>
         <item>@string/musica</item>
         <item>@string/teatro</item>
         <item>@string/televisao</item>
         <item>@string/netflix</item>
+
+
     </string-array>
+
+    <integer-array name="theme_resource">
+        <item>@array/esporte</item>
+        <item>@array/leitura</item>
+        <item>@array/esporte</item>
+        <item>@array/esporte</item>
+        <item>@array/esporte</item>
+        <item>@array/esporte</item>
+        <item>@array/esporte</item>
+        <item>@array/esporte</item>
+    </integer-array>
+    <integer-array name="theme_resource_drawable">
+        <item>@array/esporte_drawable</item>
+        <item>@array/leitura_drawable</item>
+        <item>@array/esporte_drawable</item>
+        <item>@array/esporte_drawable</item>
+        <item>@array/esporte_drawable</item>
+        <item>@array/esporte_drawable</item>
+        <item>@array/esporte_drawable</item>
+        <item>@array/esporte_drawable</item>
+
+    </integer-array>
+
+
+
+
 </resources>

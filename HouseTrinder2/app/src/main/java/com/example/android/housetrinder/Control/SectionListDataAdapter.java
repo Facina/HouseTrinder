@@ -38,6 +38,8 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
         holder.tvTitle.setText(singleItem.getName());
 
+
+        holder.itemImage.setImageResource(singleItem.getResourceDrawable());
     }
 
     @Override
