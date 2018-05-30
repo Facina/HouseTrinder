@@ -4,10 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.InterestActivity">
 
 
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_interest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/save_button_interest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:background="@drawable/green_button"
+        android:text="@string/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </LinearLayout>

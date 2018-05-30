@@ -58,4 +58,16 @@
     <string name="teatro">Teatro</string>
     <string name="televisao">Televisão</string>
     <string name="leitura">Leitura</string>
+    <string name="save">Salvar</string>
+
+    <string-array name="theme">
+        <item>@string/leitura</item>
+        <item>@string/esporte</item>
+        <item>@string/arte</item>
+        <item>@string/video_game</item>
+        <item>@string/musica</item>
+        <item>@string/teatro</item>
+        <item>@string/televisao</item>
+        <item>@string/netflix</item>
+    </string-array>
 </resources>
