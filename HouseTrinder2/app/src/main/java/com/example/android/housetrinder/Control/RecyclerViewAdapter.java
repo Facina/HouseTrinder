@@ -33,8 +33,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView price, adress,area,quartos,banheiro;
-        public RelativeLayout viewBackground;
-        public LinearLayout viewForeground;
         public ImageView img;
 
 

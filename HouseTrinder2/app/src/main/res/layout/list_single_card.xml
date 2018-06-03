@@ -15,7 +15,18 @@
         android:background="?android:selectableItemBackground"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="100dp"
+            android:layout_height="100dp">
+        <FrameLayout
+            android:id="@+id/card_background"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="100dp"
+            android:layout_height="100dp">
         <ImageView
+
+            android:padding="10dp"
             android:id="@+id/itemImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -23,6 +34,28 @@
             android:scaleType="fitCenter"
             android:src="@drawable/ic_launcher_background" />
 
+        </FrameLayout>
+
+        <FrameLayout
+            android:visibility="gone"
+            android:id="@+id/card_foreground"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="100dp"
+            android:layout_height="100dp">
+
+            <ImageView
+
+                android:padding="10dp"
+                android:id="@+id/itemCheck"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/check" />
+
+
+        </FrameLayout>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tvTitle"

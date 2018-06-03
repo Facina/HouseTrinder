@@ -52,10 +52,14 @@
             android:label="@string/preferences"
             android:parentActivityName=".view.MainActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".view.InterestActivity"
-            android:theme="@style/AppTheme"
+        <activity
+            android:name=".view.InterestActivity"
+            android:label="@string/interesses"
             android:parentActivityName=".view.PreferencesActivity"
-            android:label="@string/interesses"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".view.ChatActivity"
+            android:parentActivityName=".view.MainActivity"
+            ></activity>
     </application>
 
 </manifest>
