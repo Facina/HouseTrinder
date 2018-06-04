@@ -15,7 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.housetrinder.Model.Contacts;
+import com.example.android.housetrinder.Model.Message;
 import com.example.android.housetrinder.R;
 import com.squareup.picasso.Picasso;
 
@@ -57,7 +57,7 @@ public class ChatActivity extends AppCompatActivity implements SwipeRefreshLayou
         mProfileImage = (CircleImageView) findViewById(R.id.custom_bar_image);
 
         Bundle mBundle = getIntent().getExtras();
-        Contacts person = mBundle.getParcelable("contact");
+        Message person = mBundle.getParcelable("contact");
 
 
         mTitleView.setText(person.getReceiverName());

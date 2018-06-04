@@ -61,12 +61,15 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity  {
 
-    private boolean DEBBUG = true;
+    private boolean DEBBUG = false;
     LoginButton loginButton;
     CallbackManager callbackManager;
     SharedPreferences.Editor user_account;
     String data = "USER_INFO";
     Button regularLogin;
+    AutoCompleteTextView usernameEditText;
+    EditText passwordEditText;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +90,8 @@ public class LoginActivity extends AppCompatActivity  {
                 loginRegular();
             }
         });
-
+        usernameEditText = (AutoCompleteTextView) findViewById(R.id.email);
+        passwordEditText = (EditText) findViewById(R.id.password);
 
         if(DEBBUG) {
             try {
@@ -103,6 +107,13 @@ public class LoginActivity extends AppCompatActivity  {
                 e1.printStackTrace();
             }
         }
+
+
+
+
+
+
+
     }
 
 
@@ -220,6 +231,8 @@ public class LoginActivity extends AppCompatActivity  {
     void loginRegular(){
         user_account = getSharedPreferences(data,Context.MODE_PRIVATE).edit();
         user_account.putBoolean("login",true);
+
+
         user_account.apply();
         goToMainActivity();
     }

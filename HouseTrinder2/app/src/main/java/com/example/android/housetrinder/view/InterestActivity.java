@@ -5,20 +5,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import com.example.android.housetrinder.Control.RecyclerViewDataAdapter;
-import com.example.android.housetrinder.Model.SectionDataModel;
-import com.example.android.housetrinder.Model.SingleItemModel;
+import com.example.android.housetrinder.Model.PreferenceType;
+import com.example.android.housetrinder.Model.PreferenceItem;
 import com.example.android.housetrinder.R;
 
 import java.util.ArrayList;
 
 public class InterestActivity extends AppCompatActivity {
 
-    ArrayList<SectionDataModel> allSampleData;
+    ArrayList<PreferenceType> allSampleData;
 
 
     @Override
@@ -26,7 +24,7 @@ public class InterestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interest);
 
-        allSampleData = new ArrayList<SectionDataModel>();
+        allSampleData = new ArrayList<PreferenceType>();
         createData();
 
 
@@ -63,11 +61,11 @@ public class InterestActivity extends AppCompatActivity {
             //String[] image = getResources().getStringArray(drawablesTag.getResourceId(i,-1));
 
             //TypedArray name =  getResources().obtainTypedArray(namesTag.getResourceId(i,-1));
-            SectionDataModel dataModel = new SectionDataModel();
+            PreferenceType dataModel = new PreferenceType();
 
-            dataModel.setHeaderTitle(theme[i]);
+            dataModel.setName(theme[i]);
 
-            ArrayList<SingleItemModel> singleItem = new ArrayList<SingleItemModel>();
+            ArrayList<PreferenceItem> singleItem = new ArrayList<PreferenceItem>();
 
 
 
@@ -76,7 +74,7 @@ public class InterestActivity extends AppCompatActivity {
 
 
                // images.add(image[j]);
-                singleItem.add(new SingleItemModel(names[j],urls[j]));
+                singleItem.add(new PreferenceItem(names[j],urls[j]));
             }
 
             dataModel.setAllItemsInSection(singleItem);

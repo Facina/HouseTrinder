@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.housetrinder.Model.SingleItemModel;
+import com.example.android.housetrinder.Model.PreferenceItem;
 import com.example.android.housetrinder.R;
 import com.squareup.picasso.Picasso;
 
@@ -18,10 +18,10 @@ import java.util.ArrayList;
 
 public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListDataAdapter.SingleItemRowHolder> {
 
-    private ArrayList<SingleItemModel> itemsList;
+    private ArrayList<PreferenceItem> itemsList;
     private Context mContext;
 
-    public SectionListDataAdapter(Context context, ArrayList<SingleItemModel> itemsList) {
+    public SectionListDataAdapter(Context context, ArrayList<PreferenceItem> itemsList) {
         this.itemsList = itemsList;
         this.mContext = context;
     }
@@ -36,7 +36,7 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
     @Override
     public void onBindViewHolder(SingleItemRowHolder holder, int i) {
 
-        SingleItemModel singleItem = itemsList.get(i);
+        PreferenceItem singleItem = itemsList.get(i);
 
         holder.tvTitle.setText(singleItem.getName());
 

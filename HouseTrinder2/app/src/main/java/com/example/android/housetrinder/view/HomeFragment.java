@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment {
         user_account = getContext().getSharedPreferences(data, Context.MODE_PRIVATE);
 
             String url = user_account.getString("URL",null);
+            if(url!=null)
             Log.e("url =",url);
             Picasso.get().load(url).into(imageViewPicture);
 

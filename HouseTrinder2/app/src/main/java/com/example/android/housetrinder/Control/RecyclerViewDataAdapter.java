@@ -10,17 +10,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.housetrinder.Model.SectionDataModel;
+import com.example.android.housetrinder.Model.PreferenceType;
 import com.example.android.housetrinder.R;
 
 import java.util.ArrayList;
 
 public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDataAdapter.ItemRowHolder> {
 
-    private ArrayList<SectionDataModel> dataList;
+    private ArrayList<PreferenceType> dataList;
     private Context mContext;
 
-    public RecyclerViewDataAdapter(Context context, ArrayList<SectionDataModel> dataList) {
+    public RecyclerViewDataAdapter(Context context, ArrayList<PreferenceType> dataList) {
         this.dataList = dataList;
         this.mContext = context;
     }
@@ -35,7 +35,7 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
     @Override
     public void onBindViewHolder(ItemRowHolder itemRowHolder, int i) {
 
-        final String sectionName = dataList.get(i).getHeaderTitle();
+        final String sectionName = dataList.get(i).getName();
 
         ArrayList singleSectionItems = dataList.get(i).getAllItemsInSection();
 

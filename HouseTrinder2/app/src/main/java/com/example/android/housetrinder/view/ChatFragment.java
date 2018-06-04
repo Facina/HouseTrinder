@@ -1,6 +1,5 @@
 package com.example.android.housetrinder.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,12 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
-import com.example.android.housetrinder.Control.RecyclerViewAdapter;
 import com.example.android.housetrinder.Control.RecyclerViewMatches;
-import com.example.android.housetrinder.Model.Contacts;
-import com.example.android.housetrinder.Model.HouseExemple;
+import com.example.android.housetrinder.Model.Message;
 import com.example.android.housetrinder.R;
 
 import java.util.ArrayList;
@@ -33,7 +29,7 @@ public class ChatFragment extends Fragment implements RecyclerViewMatches.Recycl
     private boolean DEBBUGING = true;
     private RecyclerView recyclerView;
     private RecyclerViewMatches myAdapter;
-    private ArrayList<Contacts> listaDeContatos;
+    private ArrayList<Message> listaDeContatos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +37,7 @@ public class ChatFragment extends Fragment implements RecyclerViewMatches.Recycl
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_chat, container, false);
 
-        listaDeContatos = new ArrayList<Contacts>();
+        listaDeContatos = new ArrayList<Message>();
         user_account = getContext().getSharedPreferences(data, Context.MODE_PRIVATE);
 
         getContacts();
@@ -64,7 +60,7 @@ public class ChatFragment extends Fragment implements RecyclerViewMatches.Recycl
 
         String url = user_account.getString("URL",null);
         String name = user_account.getString("name","falhou");
-        listaDeContatos.add(new Contacts(name,"Tudo bom?",url));
+        listaDeContatos.add(new Message(name,"Tudo bom?",url));
 
         return;
     }

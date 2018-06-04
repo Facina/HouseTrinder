@@ -1,9 +1,10 @@
 package com.example.android.housetrinder.Model;
 
-public class SingleItemModel {
+public class PreferenceItem {
 
+    private int idPreferenceItem;
 
-    private String name;
+    private String namePreferenceItem;
 
     public String getResourceDrawable() {
         return resourceDrawable;
@@ -16,22 +17,22 @@ public class SingleItemModel {
     private String resourceDrawable;
 
 
-    public SingleItemModel() {
+    public PreferenceItem() {
     }
 
-    public SingleItemModel(String name, String resourceDrawable) {
-        this.name = name;
+    public PreferenceItem(String name, String resourceDrawable) {
+        this.namePreferenceItem = name;
         this.resourceDrawable = resourceDrawable;
     }
 
 
 
     public String getName() {
-        return name;
+        return namePreferenceItem;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.namePreferenceItem = name;
     }
 
 

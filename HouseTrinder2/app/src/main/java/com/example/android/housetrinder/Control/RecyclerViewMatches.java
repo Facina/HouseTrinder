@@ -8,16 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.housetrinder.Model.Contacts;
-import com.example.android.housetrinder.Model.HouseExemple;
+import com.example.android.housetrinder.Model.Message;
 import com.example.android.housetrinder.R;
-import com.example.android.housetrinder.view.ChatFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class RecyclerViewMatches extends RecyclerView.Adapter<RecyclerViewMatches.PeopleViewHolder>{
-    private ArrayList<Contacts> listPeople ;
+    private ArrayList<Message> listPeople ;
     private static RecyclerViewMatches.RecyclerViewClickListener itemListener;
 
     public interface RecyclerViewClickListener
@@ -25,7 +23,7 @@ public class RecyclerViewMatches extends RecyclerView.Adapter<RecyclerViewMatche
         public void recyclerViewListClicked(View v, int position);
     }
 
-    public RecyclerViewMatches(Context applicationContext, ArrayList<Contacts> people, RecyclerViewMatches.RecyclerViewClickListener itemListener){
+    public RecyclerViewMatches(Context applicationContext, ArrayList<Message> people, RecyclerViewMatches.RecyclerViewClickListener itemListener){
         this.listPeople = people;
         this.itemListener = itemListener;
     }
@@ -66,7 +64,7 @@ public class RecyclerViewMatches extends RecyclerView.Adapter<RecyclerViewMatche
 
     @Override
     public void onBindViewHolder(RecyclerViewMatches.PeopleViewHolder holder, int position) {
-        Contacts contact = listPeople.get(position);
+        Message contact = listPeople.get(position);
         holder.nameReceiver.setText(contact.getReceiverName());
         holder.lastMessage.setText(contact.getMessage());
 
