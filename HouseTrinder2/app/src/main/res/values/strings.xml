@@ -45,6 +45,7 @@
     </string-array>
 
 
+    <integer name="facebookAccount">2</integer>
     <string-array name="esporte_URL">
         <item>https://cdn.icon-icons.com/icons2/553/PNG/512/footbal_icon-icons.com_53569.png</item>
         <item>https://cdn.icon-icons.com/icons2/37/PNG/512/swimming_sport_3640.png</item>
@@ -119,6 +120,15 @@
     <string name="skate">Skate</string>
     <string name="corrida">Corrida</string>
     <string name="handball">Handball</string>
+    <string name="prompt_password_confirmation">Confirm Password</string>
+    <string name="gender">Gender</string>
+    <string name="birthDate">Birthday</string>
+    <string name="name">Name</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="emailFormatError">Email format wrong</string>
+    <string name="passwordMatchError">Passwords does not match</string>
+    <string name="nameError">Please enter a valid name</string>
 
     <string-array name="theme">
 

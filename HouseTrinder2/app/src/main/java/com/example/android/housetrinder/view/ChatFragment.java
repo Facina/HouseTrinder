@@ -43,7 +43,7 @@ public class ChatFragment extends Fragment implements RecyclerViewMatches.Recycl
         getContacts();
         recyclerView = (RecyclerView) rootView.findViewById(R.id.matches_rv);
 
-        Log.e("numero de contatos",""+listaDeContatos.size()+"nome ="+ listaDeContatos.get(0).getReceiverName());
+        //Log.e("numero de contatos",""+listaDeContatos.size()+"nome ="+ listaDeContatos.get(0).getReceiverName());
         myAdapter = new RecyclerViewMatches(getContext(), listaDeContatos , this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));

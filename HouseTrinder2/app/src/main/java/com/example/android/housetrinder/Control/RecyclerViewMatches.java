@@ -65,7 +65,7 @@ public class RecyclerViewMatches extends RecyclerView.Adapter<RecyclerViewMatche
     @Override
     public void onBindViewHolder(RecyclerViewMatches.PeopleViewHolder holder, int position) {
         Message contact = listPeople.get(position);
-        holder.nameReceiver.setText(contact.getReceiverName());
+        //holder.nameReceiver.setText(contact.getReceiverName());
         holder.lastMessage.setText(contact.getMessage());
 
         Picasso.get().load(contact.getUrlProfile()).into(holder.imgProfile);

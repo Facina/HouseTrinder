@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.example.android.housetrinder.Control.RecyclerViewDataAdapter;
 import com.example.android.housetrinder.Model.PreferenceType;
@@ -36,8 +38,8 @@ public class InterestActivity extends AppCompatActivity {
 
         my_recycler_view.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        my_recycler_view.setAdapter(adapter);
 
+        my_recycler_view.setAdapter(adapter);
 
 
     }

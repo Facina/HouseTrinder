@@ -1,8 +1,17 @@
 package com.example.android.housetrinder.Model;
 
-import java.sql.Date;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class User {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+public class User implements Parcelable {
 
 
     private int idUser;
@@ -17,10 +26,83 @@ public class User {
     private Date lastSeen;
 
 
-    User(){
+    public User(){
 
     }
 
+    public User(String jsonString) {
+        String jsonData = jsonString;
+
+        try {
+            JSONArray js = new JSONArray(jsonData);
+            JSONObject object = null;
+
+            for (int i = 0; i < js.length(); i++) {
+                object = js.getJSONObject(i);
+                this.email = object.getString("email");
+                this.nameUser = object.getString("nameUser");
+                this.urlProfile = object.getString("urlProfile");
+                this.idUser = object.getInt("idUser");
+
+                if(!object.isNull("gender")){
+                    this.gender=object.getString("gender").charAt(0);
+                }
+                if(!object.isNull("status")){
+                    this.status=object.getString("status").charAt(0);
+                }
+                if(!object.isNull("userPassword")){
+                    this.userPassword=object.getString("userPassword");
+                }
+                if(!object.isNull("type")){
+                    this.type=object.getString("type").charAt(0);
+                }
+                if(!object.isNull("birthDate")) {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    try {
+                        this.birthDate = new Date(dateFormat.parse(object.getString("birthDate")).getTime());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if(!object.isNull("lastSeen")) {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    try {
+                        this.birthDate = new Date(dateFormat.parse(object.getString("lastSeen")).getTime());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+    protected User(Parcel in) {
+        idUser = in.readInt();
+        nameUser = in.readString();
+        urlProfile = in.readString();
+        email = in.readString();
+        userPassword = in.readString();
+        gender = (char) in.readInt();
+        type = (char) in.readInt();
+        status = (char) in.readInt();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public int getIdUser() {
         return idUser;
@@ -100,5 +182,22 @@ public class User {
 
     public void setLastSeen(Date lastSeen) {
         this.lastSeen = lastSeen;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(idUser);
+        parcel.writeString(nameUser);
+        parcel.writeString(urlProfile);
+        parcel.writeString(email);
+        parcel.writeString(userPassword);
+        parcel.writeInt((int) gender);
+        parcel.writeInt((int) type);
+        parcel.writeInt((int) status);
     }
 }

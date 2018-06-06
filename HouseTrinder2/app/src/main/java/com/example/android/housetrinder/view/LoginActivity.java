@@ -1,44 +1,30 @@
 package com.example.android.housetrinder.view;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 
+import com.example.android.housetrinder.Control.Connection.WebServiceUtil;
+import com.example.android.housetrinder.Model.User;
 import com.example.android.housetrinder.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -49,17 +35,23 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.squareup.picasso.Picasso;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static android.Manifest.permission.READ_CONTACTS;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity  {
+public class LoginActivity extends AppCompatActivity {
 
     private boolean DEBBUG = false;
     LoginButton loginButton;
@@ -67,8 +59,13 @@ public class LoginActivity extends AppCompatActivity  {
     SharedPreferences.Editor user_account;
     String data = "USER_INFO";
     Button regularLogin;
+    Button registerButton;
     AutoCompleteTextView usernameEditText;
     EditText passwordEditText;
+    private User mUser;
+    LoaderManager.LoaderCallbacks<String> callbacksRegisterFacebook;
+    private static final int POST_LOADER = 22;
+    private static final String EXTRA_CONTACT = "EXTRA_CONTACT";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,6 +73,7 @@ public class LoginActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_login);
 
 
+        mUser =new User();
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -90,8 +88,20 @@ public class LoginActivity extends AppCompatActivity  {
                 loginRegular();
             }
         });
+
+        registerButton  = (Button) findViewById(R.id.register_login) ;
+
         usernameEditText = (AutoCompleteTextView) findViewById(R.id.email);
         passwordEditText = (EditText) findViewById(R.id.password);
+
+
+        registerButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
         if(DEBBUG) {
             try {
@@ -125,6 +135,7 @@ public class LoginActivity extends AppCompatActivity  {
         loginButton.setReadPermissions("public_profile", "email", "user_birthday", "user_gender");
         // If using in a fragment
 
+        user_account.putInt("accountType",getResources().getInteger(R.integer.facebookAccount));
         // Callback registration
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -136,11 +147,12 @@ public class LoginActivity extends AppCompatActivity  {
                         loginResult.getAccessToken(),
                         new GraphRequest.GraphJSONObjectCallback() {
                             @Override
-                            public void onCompleted(JSONObject object, GraphResponse response) {
+                            public void onCompleted(final JSONObject object, GraphResponse response) {
                                 //Log.v("LoginActivity", response.toString());
 
                                 Log.e("json",object.toString());
                                 // Application code
+
 
                                 user_account.putString("facebookID",loginResult.getAccessToken().getUserId());
                                 user_account.putBoolean("login",true);
@@ -148,6 +160,7 @@ public class LoginActivity extends AppCompatActivity  {
                                 try {
 
                                     String email = object.getString("email");
+                                    mUser.setEmail(object.getString("email"));
                                     //Log.e("onCompleted",email);
                                     user_account.putString("email",email);
                                 } catch (JSONException e) {
@@ -171,6 +184,7 @@ public class LoginActivity extends AppCompatActivity  {
 
                                 try{
                                     String name = object.getString("name");
+                                    mUser.setNameUser(object.getString("name"));
                                     user_account.putString("name",name);
                                 }catch (JSONException e){
                                     e.printStackTrace();
@@ -178,6 +192,7 @@ public class LoginActivity extends AppCompatActivity  {
 
                                 try{
                                     String pictureURL = object.getJSONObject("picture").getJSONObject("data").getString("url");
+                                    mUser.setUrlProfile(pictureURL);
                                     user_account.putString("URL",pictureURL);
                                 }catch (JSONException e){
                                     e.printStackTrace();
@@ -188,7 +203,107 @@ public class LoginActivity extends AppCompatActivity  {
 
                                 user_account.apply();
 
-                                goToMainActivity();
+                                callbacksRegisterFacebook = new LoaderManager.LoaderCallbacks<String>() {
+                                    @Override
+                                    public Loader<String> onCreateLoader(int id, final Bundle args) {
+                                        return new AsyncTaskLoader<String>(getApplicationContext()) {
+
+                                            @Override
+                                            protected void onStartLoading(){
+                                                if(args==null){
+                                                    return;
+                                                }
+
+                                                forceLoad();
+                                            }
+
+                                            @Override
+                                            public String loadInBackground() {
+                                                Log.e("runRegister", "loading");
+
+                                                User contact = args.getParcelable(EXTRA_CONTACT);
+
+                                                if(contact == null){
+                                                    return null;
+                                                }
+
+                                                ObjectMapper mapper= new ObjectMapper();
+                                                try {
+
+                                                    OkHttpClient client = new OkHttpClient();
+
+                                                    RequestBody body = null;
+                                                    try {
+                                                        body = new FormBody.Builder()
+                                                                    .add("email",object.getString("email"))
+                                                                    .add("nameUser",object.getString("name"))
+                                                                    .add("urlProfile",object.getJSONObject("picture").getJSONObject("data").getString("url"))
+                                                                    .build();
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+
+                                                    Request request = new Request.Builder()
+                                                            .url(WebServiceUtil.REGISTER_FACEBOOK)
+                                                            .post(body)
+                                                            .build();
+                                                    Response response = client.newCall(request).execute();
+                                                    Log.e("Response",response.body().string());
+                                                    if (response.isSuccessful()){
+
+
+                                                        return response.message();
+                                                    }
+
+                                                } catch (JsonProcessingException e) {
+                                                    e.printStackTrace();
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
+                                                }
+                                                return null;
+                                            }
+                                        };
+                                    }
+
+                                    @Override
+                                    public void onLoadFinished(android.support.v4.content.Loader<String> loader, String data) {
+                                        Log.e("onLoadFinished",data);
+                                        if(!data.equals("OK")){
+
+                                            Toast.makeText(
+                                                    getApplicationContext(),
+                                                    "Error adding contact",
+                                                    Toast.LENGTH_LONG).show();
+                                        }
+                                        else{
+                                            Toast.makeText(
+                                                    getApplicationContext(),
+                                                    "Contact added",
+                                                    Toast.LENGTH_LONG).show();
+                                            goToMainActivity();
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onLoaderReset(android.support.v4.content.Loader<String> loader) {
+
+                                    }
+                                };
+
+
+
+                                Bundle postBundle = new Bundle();
+                                postBundle.putParcelable(EXTRA_CONTACT,mUser);
+                                LoaderManager loaderManager = getSupportLoaderManager();
+                                android.support.v4.content.Loader<User> postLoader = loaderManager.getLoader(POST_LOADER);
+                                loaderManager.initLoader(POST_LOADER, postBundle,  callbacksRegisterFacebook).forceLoad();
+
+                                Log.e("runRegister", "end");
+
+
+
+
 
                             }
                         });
@@ -230,6 +345,8 @@ public class LoginActivity extends AppCompatActivity  {
 
     void loginRegular(){
         user_account = getSharedPreferences(data,Context.MODE_PRIVATE).edit();
+
+
         user_account.putBoolean("login",true);
 
 

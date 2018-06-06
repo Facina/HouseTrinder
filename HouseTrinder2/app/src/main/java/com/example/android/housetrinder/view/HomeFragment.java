@@ -67,7 +67,6 @@ public class HomeFragment extends Fragment {
         preferences.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginManager.getInstance().logOut();
                 Intent intent = new Intent(getContext(),PreferencesActivity.class);
                 startActivity(intent);
             }

@@ -60,7 +60,7 @@ public class ChatActivity extends AppCompatActivity implements SwipeRefreshLayou
         Message person = mBundle.getParcelable("contact");
 
 
-        mTitleView.setText(person.getReceiverName());
+        //mTitleView.setText(person.getReceiverName());
         Picasso.get().load(person.getUrlProfile()).into(mProfileImage);
         mRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.message_swipe_layout);
         mRefreshLayout.setOnRefreshListener(this);
