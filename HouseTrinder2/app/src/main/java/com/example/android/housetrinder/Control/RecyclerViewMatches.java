@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.housetrinder.Model.Message;
+import com.example.android.housetrinder.Model.User;
 import com.example.android.housetrinder.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class RecyclerViewMatches extends RecyclerView.Adapter<RecyclerViewMatches.PeopleViewHolder>{
-    private ArrayList<Message> listPeople ;
+    private ArrayList<User> listPeople ;
     private static RecyclerViewMatches.RecyclerViewClickListener itemListener;
 
     public interface RecyclerViewClickListener
@@ -23,7 +23,7 @@ public class RecyclerViewMatches extends RecyclerView.Adapter<RecyclerViewMatche
         public void recyclerViewListClicked(View v, int position);
     }
 
-    public RecyclerViewMatches(Context applicationContext, ArrayList<Message> people, RecyclerViewMatches.RecyclerViewClickListener itemListener){
+    public RecyclerViewMatches(Context applicationContext, ArrayList<User> people, RecyclerViewMatches.RecyclerViewClickListener itemListener){
         this.listPeople = people;
         this.itemListener = itemListener;
     }
@@ -64,10 +64,11 @@ public class RecyclerViewMatches extends RecyclerView.Adapter<RecyclerViewMatche
 
     @Override
     public void onBindViewHolder(RecyclerViewMatches.PeopleViewHolder holder, int position) {
-        Message contact = listPeople.get(position);
-        //holder.nameReceiver.setText(contact.getReceiverName());
-        holder.lastMessage.setText(contact.getMessage());
+        User contact = listPeople.get(position);
+        holder.nameReceiver.setText(contact.getNameUser());
+       // holder.lastMessage.setText(contact.getNameUser());
 
+        if(contact.getUrlProfile()!=null && !contact.getUrlProfile().equals(""))
         Picasso.get().load(contact.getUrlProfile()).into(holder.imgProfile);
 
 

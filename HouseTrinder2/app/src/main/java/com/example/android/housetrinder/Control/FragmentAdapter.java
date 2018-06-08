@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.android.housetrinder.R;
 import com.example.android.housetrinder.view.ChatFragment;
 import com.example.android.housetrinder.view.HomeFragment;
 import com.example.android.housetrinder.view.SearchFragment;

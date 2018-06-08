@@ -6,6 +6,8 @@ public class MatchUsers {
     private int idMatch;
     private int userA;
     private int userB;
+    private User A;
+    private User B;
     private double matchRate;
     private boolean connected;
 

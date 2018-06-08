@@ -4,18 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.example.android.housetrinder.Control.FragmentAdapter;
 import com.example.android.housetrinder.R;
-import com.facebook.AccessToken;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         user_account = getApplicationContext().getSharedPreferences(data, Context.MODE_PRIVATE);
+
 
 
 

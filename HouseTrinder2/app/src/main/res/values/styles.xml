@@ -47,6 +47,26 @@
     </style>
 
 
+    <style name="female_register">
+        <item name="android:textColor">@color/pink</item>
+        <item name="android:shadowColor">@color/pink_bright</item>
+        <item name="android:shadowRadius">20</item>
+    </style>
+
+    <style name="male_register">
+        <item name="android:textColor">@android:color/holo_blue_dark</item>
+        <item name="android:shadowColor">@android:color/holo_blue_bright</item>
+        <item name="android:shadowRadius">20</item>
+    </style>
+
+
+    <style name="regular_register">
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowRadius">0</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+
     <style name="SwitchCompatTheme" >
         <item name="colorControlActivated">@color/colorPrimary</item>
     </style>

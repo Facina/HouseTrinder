@@ -97,24 +97,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <android.support.v7.widget.SwitchCompat
-        android:shadowColor="@color/colorPrimary"
-        android:id="@+id/register_switch_gender"
-        android:layout_gravity="left|center_vertical"
-        android:theme="@style/SwitchCompatTheme"
-        android:textSize="25sp"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
         <TextView
-            android:id="@+id/register_gender"
+            android:layout_weight="1"
+            android:id="@+id/register_gender_female"
             android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="male"
+            android:gravity="start"
+            android:text="@string/female"
+            android:textSize="25sp" />
+
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/register_gender_male"
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@string/male"
             android:textSize="25sp" />
 
 
@@ -123,6 +124,8 @@
 
 
         <TextView
+
+            android:padding="10dp"
             android:gravity="center"
             android:layout_gravity="center"
             android:textSize="25sp"
@@ -131,13 +134,14 @@
             android:layout_height="wrap_content" />
 
         <DatePicker
-
-            android:calendarTextColor="@color/black"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/datePicker_register"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="140dp"
+            android:calendarTextColor="@color/black"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner">
 
         </DatePicker>
 

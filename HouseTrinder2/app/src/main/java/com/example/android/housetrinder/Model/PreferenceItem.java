@@ -21,20 +21,25 @@ public class PreferenceItem {
     }
 
     public PreferenceItem(String name, String resourceDrawable) {
-        this.namePreferenceItem = name;
-        this.resourceDrawable = resourceDrawable;
+        this.setNamePreferenceItem(name);
+        this.setResourceDrawable(resourceDrawable);
     }
 
 
 
-    public String getName() {
+    public int getIdPreferenceItem() {
+        return idPreferenceItem;
+    }
+
+    public void setIdPreferenceItem(int idPreferenceItem) {
+        this.idPreferenceItem = idPreferenceItem;
+    }
+
+    public String getNamePreferenceItem() {
         return namePreferenceItem;
     }
 
-    public void setName(String name) {
-        this.namePreferenceItem = name;
+    public void setNamePreferenceItem(String namePreferenceItem) {
+        this.namePreferenceItem = namePreferenceItem;
     }
-
-
-
 }

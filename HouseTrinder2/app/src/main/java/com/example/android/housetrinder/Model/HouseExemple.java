@@ -1,7 +1,6 @@
 package com.example.android.housetrinder.Model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HouseExemple {
 

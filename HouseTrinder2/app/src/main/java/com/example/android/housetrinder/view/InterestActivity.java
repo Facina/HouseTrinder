@@ -1,26 +1,38 @@
 package com.example.android.housetrinder.view;
 
-import android.content.res.TypedArray;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.example.android.housetrinder.Control.Connection.WebServiceUtil;
 import com.example.android.housetrinder.Control.RecyclerViewDataAdapter;
 import com.example.android.housetrinder.Model.PreferenceType;
-import com.example.android.housetrinder.Model.PreferenceItem;
+import com.example.android.housetrinder.Model.User;
 import com.example.android.housetrinder.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 public class InterestActivity extends AppCompatActivity {
 
+    private static final int FETCH_INTEREST = 11;
     ArrayList<PreferenceType> allSampleData;
+    RecyclerView my_recycler_view;
+    RecyclerViewDataAdapter adapter;
 
-
+    LoaderManager.LoaderCallbacks<ArrayList<PreferenceType>> callbacksFetchInterest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,16 +42,7 @@ public class InterestActivity extends AppCompatActivity {
         createData();
 
 
-        RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.recyclerView_interest);
 
-        my_recycler_view.setHasFixedSize(true);
-
-        RecyclerViewDataAdapter adapter = new RecyclerViewDataAdapter(this, allSampleData);
-
-        my_recycler_view.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-
-        my_recycler_view.setAdapter(adapter);
 
 
     }
@@ -48,44 +51,105 @@ public class InterestActivity extends AppCompatActivity {
 
     public void createData() {
 
-        String[] theme = getResources().getStringArray(R.array.theme);
-        TypedArray namesTag = getResources().obtainTypedArray(R.array.theme_resource);
-        TypedArray drawablesTag = getResources().obtainTypedArray(R.array.theme_resource_drawable);
-        String[] urls = getResources().getStringArray(R.array.esporte_URL);
-        String[] names = getResources().getStringArray(R.array.esporte);
-        //ArrayList<String> names = new ArrayList<>();
-       // ArrayList<String> images = new ArrayList<>();
-       //Log.e("drawable"," "+drawablesTag.getResourceId(0,-1));
-        for (int i = 0; i < namesTag.length(); i++) {
 
-           // names.clear();
-           // images.clear();
-            //String[] image = getResources().getStringArray(drawablesTag.getResourceId(i,-1));
+        callbacksFetchInterest = new LoaderManager.LoaderCallbacks<ArrayList<PreferenceType>>() {
+            @Override
+            public Loader<ArrayList<PreferenceType>> onCreateLoader(int id, final Bundle args) {
+                return new AsyncTaskLoader<ArrayList<PreferenceType>>(getApplicationContext()) {
 
-            //TypedArray name =  getResources().obtainTypedArray(namesTag.getResourceId(i,-1));
-            PreferenceType dataModel = new PreferenceType();
+                    @Override
+                    protected void onStartLoading(){
 
-            dataModel.setName(theme[i]);
+                        forceLoad();
+                    }
 
-            ArrayList<PreferenceItem> singleItem = new ArrayList<PreferenceItem>();
+                    @Override
+                    public ArrayList<PreferenceType> loadInBackground() {
+                        Log.e("checkingEMail", "loading");
 
 
 
+                        try {
 
-            for (int j = 0; j <9; j++) {
+                            OkHttpClient client = new OkHttpClient();
 
 
-               // images.add(image[j]);
-                singleItem.add(new PreferenceItem(names[j],urls[j]));
+
+                            Request request = new Request.Builder()
+                                    .url(WebServiceUtil.FETCH_INTEREST)
+                                    .build();
+                            //Log.e("Request =",request.toString());
+                            Response response = client.newCall(request).execute();
+                           // Log.e("Response",response.body().string());
+                            if (response.isSuccessful()){
+
+                                try {
+                                    return PreferenceType.getListInterest(response.body().string());
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                    return null;
+                                }
+
+                            }
+                        } catch (IOException e) {
+
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                };
             }
 
-            dataModel.setAllItemsInSection(singleItem);
+            @Override
+            public void onLoadFinished(android.support.v4.content.Loader<ArrayList<PreferenceType>> loader, ArrayList<PreferenceType> user) {
+                if(user == null){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Wrong username or password",
 
-            allSampleData.add(dataModel);
+                            Toast.LENGTH_LONG).show();
+                }
+                else{
+
+                    allSampleData = user;
+
+                    my_recycler_view = (RecyclerView) findViewById(R.id.recyclerView_interest);
+
+                    my_recycler_view.setHasFixedSize(true);
+
+
+                    my_recycler_view.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+
+                    adapter = new RecyclerViewDataAdapter(getApplicationContext(), allSampleData);
+
+
+                    my_recycler_view.setAdapter(adapter);
+
+
+
+                }
+
+
+
+                    //Log.e("User =", data.getEmail());
+
+                }
+
+            @Override
+            public void onLoaderReset(Loader<ArrayList<PreferenceType>> loader) {
+
+            }
+        };
+
+
+        LoaderManager loaderManager = getSupportLoaderManager();
+        android.support.v4.content.Loader<User> emailLoader = loaderManager.getLoader(FETCH_INTEREST);
+        loaderManager.restartLoader(FETCH_INTEREST, null, callbacksFetchInterest).forceLoad();
+
 
         }
 
-    }
+
 
 
     @Override

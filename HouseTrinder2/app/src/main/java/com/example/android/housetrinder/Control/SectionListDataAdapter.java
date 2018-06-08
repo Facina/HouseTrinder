@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,8 +39,9 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
         PreferenceItem singleItem = itemsList.get(i);
 
-        holder.tvTitle.setText(singleItem.getName());
+        holder.tvTitle.setText(singleItem.getNamePreferenceItem());
 
+       // Log.e("url",singleItem.getResourceDrawable());
         Picasso.get().load(singleItem.getResourceDrawable()).fit().into(holder.itemImage);
        // holder.itemImage.setImageResource(singleItem.getResourceDrawable());
     }
@@ -56,6 +58,7 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
         protected ImageView itemImage;
 
         protected FrameLayout frameLayoutCheck;
+        protected LinearLayout linearLayout;
 
         public SingleItemRowHolder(View view) {
             super(view);
@@ -63,16 +66,23 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
             this.tvTitle = (TextView) view.findViewById(R.id.tvTitle);
             this.itemImage = (ImageView) view.findViewById(R.id.itemImage);
             this.frameLayoutCheck = (FrameLayout) view.findViewById(R.id.card_foreground);
-
+            this.linearLayout = (LinearLayout) view.findViewById(R.id.linearLayout_card);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
 
                     Toast.makeText(v.getContext(), tvTitle.getText(), Toast.LENGTH_SHORT).show();
-                    if(frameLayoutCheck.getVisibility() == View.VISIBLE)
+                    if(frameLayoutCheck.getVisibility() == View.VISIBLE) {
                         frameLayoutCheck.setVisibility(View.INVISIBLE);
-                    else frameLayoutCheck.setVisibility(View.VISIBLE);
+                        linearLayout.setBackgroundResource(R.drawable.regular_background);
+
+                    }
+                    else{
+                        frameLayoutCheck.setVisibility(View.VISIBLE);
+                        linearLayout.setBackgroundResource(R.drawable.border_green);
+
+                    }
                 }
             });
 

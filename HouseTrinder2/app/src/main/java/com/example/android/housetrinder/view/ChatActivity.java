@@ -2,10 +2,10 @@ package com.example.android.housetrinder.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,7 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.housetrinder.Model.Message;
+import com.example.android.housetrinder.Model.User;
 import com.example.android.housetrinder.R;
 import com.squareup.picasso.Picasso;
 
@@ -57,11 +57,13 @@ public class ChatActivity extends AppCompatActivity implements SwipeRefreshLayou
         mProfileImage = (CircleImageView) findViewById(R.id.custom_bar_image);
 
         Bundle mBundle = getIntent().getExtras();
-        Message person = mBundle.getParcelable("contact");
+        if (mBundle == null) throw new AssertionError();
+        User person = mBundle.getParcelable("contact");
 
 
         //mTitleView.setText(person.getReceiverName());
-        Picasso.get().load(person.getUrlProfile()).into(mProfileImage);
+        if(person.getUrlProfile()!=null && !person.getUrlProfile().equals(""))
+            Picasso.get().load(person.getUrlProfile()).into(mProfileImage);
         mRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.message_swipe_layout);
         mRefreshLayout.setOnRefreshListener(this);
 
